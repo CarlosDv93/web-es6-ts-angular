@@ -1,51 +1,23 @@
 "use strict";
-var Carro = /** @class */ (function () {
-    function Carro(modelo, numeroPortas) {
-        this.velocidade = 0;
-        this.modelo = modelo;
-        this.numeroDePortas = numeroPortas;
+Object.defineProperty(exports, "__esModule", { value: true });
+var Concessionaria_1 = require("./Concessionaria");
+var Carro_1 = require("./Carro");
+var Pessoa_1 = require("./Pessoa");
+/* --- Criar Carros --- */
+var carroA = new Carro_1.Carro("Ferrari", 4);
+var carroB = new Carro_1.Carro("Veloster", 3);
+var carroC = new Carro_1.Carro("Cerato", 4);
+/* --- Montar Lista de Carros da Concessionária --- */
+var carros = [carroA, carroB, carroC];
+/* --- Criar a concessionaria --- */
+var concessionaria = new Concessionaria_1.Concessionaria("Rua Teste, 999 - Bairro Alagado", carros);
+/* --- Mostrar a lista de carros --- */
+//console.log(concessionaria.mostrarListaDeCarros());
+/* --- Criar Pessoas --- */
+var cliente = new Pessoa_1.Pessoa("Carlos", "Veloster");
+concessionaria.mostrarListaDeCarros().map(function (carro) {
+    if (carro['modelo'] == cliente.dizerCarroPreferido()) {
+        cliente.comprarCarro(carro);
     }
-    Carro.prototype.acelerar = function () {
-        this.velocidade = this.velocidade + 10;
-    };
-    Carro.prototype.parar = function () {
-        this.velocidade = 0;
-    };
-    Carro.prototype.velocidadeAtual = function () {
-        return this.velocidade;
-    };
-    return Carro;
-}());
-var Concessionaria = /** @class */ (function () {
-    function Concessionaria(endereco) {
-        this.endereco = endereco;
-    }
-    Concessionaria.prototype.fornecerEndereco = function () {
-        return this.endereco;
-    };
-    Concessionaria.prototype.mostrarListaDeCarros = function () {
-        return this.listaDeCarros;
-    };
-    return Concessionaria;
-}());
-var Pessoa = /** @class */ (function () {
-    function Pessoa(nome, carroPreferido) {
-        this.nome = nome;
-        this.carroPreferido = carroPreferido;
-    }
-    Pessoa.prototype.dizerNome = function () {
-        return this.nome;
-    };
-    Pessoa.prototype.dizerCarroPreferido = function () {
-        return this.carroPreferido;
-    };
-    Pessoa.prototype.comprarCarro = function (modelo) {
-        this.carro = modelo;
-    };
-    Pessoa.prototype.dizerCarroQueTem = function () {
-        return this.carro;
-    };
-    return Pessoa;
-}());
-var pessoa = new Pessoa("Carlos", "Ferrari");
-console.log(pessoa.dizerCarroPreferido());
+});
+console.log(cliente.dizerCarroQueTem());
