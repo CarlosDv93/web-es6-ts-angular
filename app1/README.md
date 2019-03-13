@@ -23,7 +23,7 @@ Foi optado pelo mpn
 ## Dicas
 ### Angular
 #### String Interpolation
-Nas strings interpolation '{{}}' podem ser usadas expressões matemáticas e atributos da classe principal do componente em que este html está sendo usado. 
+Nas strings interpolation '{{}}' podem ser usadas expressões matemáticas e atributos da classe principal do componente em que este html está sendo usado. Pode ser usado em qualquer parte do código.
 
 Exemplo: 
 ```
@@ -37,7 +37,7 @@ Resultará em:
     Resultado: 4
 ```
 #### Property Binding
-Especifico para certos atributos. No caso da aula que foi apresentado o Property Binding as imagens das "vidas" restantes. 
+Especifico para certos atributos. No caso da aula que foi apresentado o Property Binding as imagens das "vidas" restantes (tentativas). 
 
 Exemplo:
 ```
@@ -45,11 +45,12 @@ Exemplo:
 <img [src]="coracaoVazio">
 
 * TS
-
 public coracaoVazio : string = '/src/assets/imagemCoracaoVazio.png';
 ```
 
-O angular interpretará essa chamada e irá na classe desse html (o arquivo TS) buscar um atributo com o nome coracaoVazio para preencher a imagem. Resultado será:
+O angular interpretará essa chamada e irá na classe desse html (o arquivo TS) buscar uma variável com o nome coracaoVazio para preencher a imagem. Resultado será:
 ```
 A imagem do atributo
 ```
+
+#### NÃO usar string interpolation e property binding juntos. Ou um ou o outro.
