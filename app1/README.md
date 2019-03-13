@@ -34,7 +34,22 @@ Exemplo:
 
 Resultará em:
 ```
-<div>
     Resultado: 4
-</div>
+```
+#### Property Binding
+Especifico para certos atributos. No caso da aula que foi apresentado o Property Binding as imagens das "vidas" restantes. 
+
+Exemplo:
+```
+* HTML
+<img [src]="coracaoVazio">
+
+* TS
+
+public coracaoVazio : string = '/src/assets/imagemCoracaoVazio.png';
+```
+
+O angular interpretará essa chamada e irá na classe desse html (o arquivo TS) buscar um atributo com o nome coracaoVazio para preencher a imagem. Resultado será:
+```
+A imagem do atributo
 ```
