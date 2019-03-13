@@ -7,13 +7,13 @@ Projeto gerado com [Angular CLI](https://github.com/angular/angular-cli) na vers
 
 ....
 
-###Explicações Durante o Curso
+##Explicações Durante o Curso
 ng generate component tentativas = ng g c tentativas
 --spec=false => Faz com que o arquivo de teste não seja criado (pode ser usado o --skipTest)
 
 ....
 
-###Instalar Versão do [Bootstrap](https://getbootstrap.com/)
+##Instalar Versão do [Bootstrap](https://getbootstrap.com/)
 Tem duas maneiras de fazer isso:
 
 * MPN
