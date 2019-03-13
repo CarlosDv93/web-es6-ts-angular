@@ -19,3 +19,22 @@ Tem duas maneiras de fazer isso:
 * CDN
 
 Foi optado pelo mpn
+
+## Dicas
+### Angular
+#### String Interpolation
+Nas strings interpolation '{{}}' podem ser usadas expressões matemáticas e atributos da classe principal do componente em que este html está sendo usado. 
+
+Exemplo: 
+```
+<div>
+    Resultado: {{2 + 2}}
+</div>
+```
+
+Resultará em:
+```
+<div>
+    Resultado: 4
+</div>
+```

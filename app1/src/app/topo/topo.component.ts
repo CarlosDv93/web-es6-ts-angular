@@ -10,4 +10,6 @@ import { Component } from '@angular/core';
     //styles: [' .exemplo { color: red} '] //pra quebrar linha usar as crases `
     styleUrls : ['./topo.component.css'] //pode passar mais de um
 })
-export class TopoComponent{}
+export class TopoComponent{
+    public titulo: string = 'Aprendendo Inglês';
+}
