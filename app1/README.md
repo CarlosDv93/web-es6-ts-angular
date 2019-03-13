@@ -21,8 +21,8 @@ Tem duas maneiras de fazer isso:
 Foi optado pelo mpn
 
 ## Dicas
-### Angular
-#### String Interpolation
+## Angular
+### String Interpolation
 Nas strings interpolation '{{}}' podem ser usadas expressões matemáticas e atributos da classe principal do componente em que este html está sendo usado. Pode ser usado em qualquer parte do código.
 
 Exemplo: 
@@ -36,7 +36,7 @@ Resultará em:
 ```
     Resultado: 4
 ```
-#### Property Binding
+### Property Binding
 Especifico para certos atributos. No caso da aula que foi apresentado o Property Binding as imagens das "vidas" restantes (tentativas). 
 
 Exemplo:
@@ -53,4 +53,19 @@ O angular interpretará essa chamada e irá na classe desse html (o arquivo TS) 
 A imagem do atributo
 ```
 
-#### NÃO usar string interpolation e property binding juntos. Ou um ou o outro.
+
+### Event Binding
+Capturar eventos para realizar ações. É usado usando (). Existem várias ações que podem ser capturados. (input, click, focus, keyup, etc)
+
+Exemplo:
+```
+* HTML
+<button (onClick)="alerta()">
+
+* TS
+public alerta(): { }
+```
+
+O resultado será que ao clicar no botão, será chamado o método alerta().
+
+#### NÃO usar string interpolation e property binding juntos. Ou um ou o outro. Eles podem ser usado em conjunto com o event binding. ???
