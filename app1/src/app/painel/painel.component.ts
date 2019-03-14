@@ -1,6 +1,6 @@
 import { Frase } from './../shared/frase.model';
 import { FRASES } from './frases-mock';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-painel',
@@ -15,6 +15,9 @@ export class PainelComponent implements OnInit {
   public rodada : number = 0;
   public rodadaFrase: Frase;
   public progresso: number = 0;
+  public tentativas: number = 3;
+
+  @Output() public encerrarJogo: EventEmitter<string> = new EventEmitter();
 
   constructor() {
     this.atualizaRodada();
@@ -28,17 +31,26 @@ export class PainelComponent implements OnInit {
   }
 
   public verificarResposta() : void {
+    
     if(this.resposta == this.rodadaFrase.frasePtBr){
-      alert('A tradução está correta!')
-      
       //Troca a pergunta
       this.rodada++;
-      this.progresso = (100 / this.frases.length);
+      this.progresso = this.progresso + (100 / this.frases.length);
+
+      if(this.rodada === 4){
+        this.encerrarJogo.emit('vitoria');
+      }
 
       this.atualizaRodada();
   
     } else {
-      alert('A frase está errada!')
+      
+      this.tentativas--;
+
+      if(this.tentativas === -1){
+        this.encerrarJogo.emit('derrota');
+      }
+
     }
     
   }
@@ -49,6 +61,10 @@ export class PainelComponent implements OnInit {
 
     //Colocar como vazia o textarea
     this.resposta = '';
+  }
+
+  ngOnDestroy() {
+    
   }
 
 
