@@ -65,7 +65,7 @@ export class OfertasService {
             if(deu_certo) {
                 resolve(this.ofertas);
             } else {
-                reject({codigo_erro: '404', mensagem_erro: 'Servidor Não encontrado'});
+                reject({codigo_erro: '404', mensagem_erro: 'Servidor Não encontrado XYZ'});
             }
             
 
