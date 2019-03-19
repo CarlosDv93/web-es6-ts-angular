@@ -60,15 +60,31 @@ export class OfertasService {
     public getOfertas2(): Promise<Oferta[]>{
         return new Promise((resolve, reject) => {
             //Algum tipo de processamento, que ao finalizar, chama a função resolve ou a função reject
-            console.log('Será que passou por aqui?');
-            let deu_certo = false;
+            //console.log('Será que passou por aqui?');
+            let deu_certo = true;
             if(deu_certo) {
-                resolve(this.ofertas);
+                setTimeout(() => resolve(this.ofertas), 3000)
+                
             } else {
                 reject({codigo_erro: '404', mensagem_erro: 'Servidor Não encontrado XYZ'});
             }
             
 
         })
+        .then((ofertas: Oferta[])=>{
+            console.log("Primeiro Then");
+            return ofertas;
+        })
+        .then((ofertas1 : Oferta[]) => {
+            console.log("Segundo Then");
+            return new Promise( (resolve1, reject1) => {
+                setTimeout( () => { resolve1(ofertas1) }, 3000)
+            })
+        })
+        .then( (ofertas2: Oferta[] ) => {
+            console.log('Terceiro then executado após 3 segundos pois estava aguardando uma promisse ser resolvida')
+            return ofertas2;
+        })
+        
     }
 }
