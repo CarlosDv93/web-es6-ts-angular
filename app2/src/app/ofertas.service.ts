@@ -19,5 +19,10 @@ export class OfertasService {
         .then( (ofertasResposta : any) => ofertasResposta);
     }
 
-    
+    public getOfertasPorCategoria(categoria:string) : Promise<Array<Oferta>> {
+        //pode concatenar as string ou usar o backtip (` - crase) e usar o binding
+        return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+        .toPromise()
+        .then((ofertasRestaurante : any) => ofertasRestaurante);
+    }
 }
