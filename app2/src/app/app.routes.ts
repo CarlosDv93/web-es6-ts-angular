@@ -5,6 +5,6 @@ import { DiversaoComponent } from './diversao/diversao.component';
 
 export const ROUTES: Routes = [
     {path: '', component: HomeComponent},
-    {path: '/restaurantes', component: RestauranteComponent},
+    {path: 'restaurantes', component: RestauranteComponent},
     {path: 'diversao', component: DiversaoComponent}
 ]
