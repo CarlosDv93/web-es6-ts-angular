@@ -8,3 +8,8 @@ img {
     padding-left: 25px;
     padding-right: 25px;
 }
+
+.padding {
+    padding-bottom: 3px;
+    /*margin-bottom: 50px;*/
+}
