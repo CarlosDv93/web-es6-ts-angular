@@ -15,9 +15,12 @@
           <h4 class="card-title">{{oferta.titulo}}</h4>
           <p class="card-text">{{oferta.descricao_oferta}}</p>
           <p class="preco">{{oferta.valor}}</p>
-          <a href="#" class="btn btn-outline-primary">Ver oferta</a>
+          <a class="btn btn-outline-primary" [routerLink]="['/oferta', oferta.id]" routerLinkActive="router-link-active" >Ver oferta</a>
         </div>
       </div>
     </div>
+  </div>
+
+  <br>
   
 </div>
