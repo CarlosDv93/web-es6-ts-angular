@@ -11,7 +11,7 @@ import { Oferta } from '../shared/oferta.model';
 })
 export class OfertaComponent implements OnInit {
 
-  private oferta: Oferta;
+  public oferta: Oferta;
 
   constructor(private route: ActivatedRoute,
       private ofertaService: OfertasService) { }
