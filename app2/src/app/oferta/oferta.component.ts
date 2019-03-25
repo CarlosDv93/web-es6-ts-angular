@@ -26,13 +26,14 @@ export class OfertaComponent implements OnInit {
       console.log(parametro);
     })*/
 
-    /* Exemplo de Observable */
+    /*
+    // Exemplo de Observable
     this.route.params.subscribe(
       (parametros: any) => {console.log(parametros); }, //Quando dá certo
       (error: any) => { console.log(error)}, //Quando tem algum erro
       () => { console.log("Processamento foi Classificado como Concluido")} //Quando está concluido
     )
-    
+    */
   }
 
 }
