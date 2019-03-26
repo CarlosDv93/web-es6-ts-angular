@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
-import { Observable, Observer } from 'rxjs';
-//import 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs';
+import { Observer } from 'rxjs/';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app2-oferta',
@@ -11,7 +12,10 @@ import { Observable, Observer } from 'rxjs';
   styleUrls: ['./oferta.component.css'],
   providers: [OfertasService]
 })
-export class OfertaComponent implements OnInit {
+export class OfertaComponent implements OnInit, OnDestroy {
+
+  private tempoObservableSubscription: Subscription;
+  private meuObservableTesteSubscription: Subscription;
 
   public oferta: Oferta;
 
@@ -37,22 +41,31 @@ export class OfertaComponent implements OnInit {
     )
     */
 
+    let tempo = Observable.interval(2000);
+    this.tempoObservableSubscription = tempo.subscribe(arg => console.log(arg));
+    
+
     //observable (observável)
-      let observavel = Observable.create((observer: Observer<string>) => {
-        observer.next('Primeiro evento da stream');
-        observer.next('Segundo evento da stream');
-        //observer.complete();
-        observer.next('Terceiro evento da stream');
-        observer.error('Algum erro foi encontrado na stream de eventos');
-        observer.complete();
-      })
+    let observavel = Observable.create((observer: Observer<string>) => {
+      observer.next('Primeiro evento da stream');
+      observer.next('Segundo evento da stream');
+      //observer.complete();
+      observer.next('Terceiro evento da stream');
+      observer.error('Algum erro foi encontrado na stream de eventos');
+      observer.complete();
+    })
 
     //observable (observador - ao se dar subscribe, vira o observable)
-      observavel.subscribe(
-        (resultado : any) => { console.log(resultado)},
-        (error: any) => { console.log(error)},
-        () => { console.log('Evento Completo')}
-      );
+    this.meuObservableTesteSubscription= observavel.subscribe(
+      (resultado : any) => { console.log(resultado)},
+      (error: any) => { console.log(error)},
+      () => { console.log('Evento Completo')}
+    );
+  }
+
+  ngOnDestroy() {
+    this.meuObservableTesteSubscription.unsubscribe();
+    this.tempoObservableSubscription.unsubscribe();
   }
 
 }
