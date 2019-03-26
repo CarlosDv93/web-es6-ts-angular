@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
+import { Observable, Observer } from 'rxjs';
+//import 'rxjs/Rx';
 
 @Component({
   selector: 'app2-oferta',
@@ -34,6 +36,16 @@ export class OfertaComponent implements OnInit {
       () => { console.log("Processamento foi Classificado como Concluido")} //Quando está concluido
     )
     */
+
+    //observable (observável)
+      let observavel = Observable.create((observer: Observer<string>) => {
+        observer.next('Primeiro evento da stream');
+      })
+
+    //observable (observador - ao se dar subscribe, vira o observable)
+      observavel.subscribe(
+        (resultado : any) => { console.log(resultado)}
+      )
   }
 
 }
