@@ -11,7 +11,10 @@
 
         <!-- Pesquisa -->
         <div class="col-md-6">
-          <input type="text" class="form-control" placeholder="Pesquise por ofertas..."/>
+          <input type="text" 
+            class="form-control" 
+            placeholder="Pesquise por ofertas..."
+            (keyup)="pesquisa($event)"/>
         </div>
         
         <!-- Carrinho -->
