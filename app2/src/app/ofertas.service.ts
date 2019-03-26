@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 //Import do toPromise
 //import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/retry';
 
 @Injectable()
 export class OfertasService {
@@ -55,7 +56,8 @@ export class OfertasService {
     }
 
     public pesquisaOfertas(termo:string) : Observable<Oferta[]>{
-        return this.http.get(`${URL_API}/ofertas?descricao_oferta=${termo}`)
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+            .retry(10)
             .map((retorno: any) => {
                 return retorno;
             })
