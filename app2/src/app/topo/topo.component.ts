@@ -3,10 +3,13 @@ import { Observable, Subject } from 'rxjs';
 
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/debounceTime'; //Sem também funcionou
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/empty';
 
 import { Oferta } from '../shared/oferta.model';
 import { OfertasService } from './../ofertas.service';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app2-topo',
@@ -24,6 +27,7 @@ export class TopoComponent implements OnInit {
   ngOnInit() {
     this.ofertas = this.subjectPesquisa
       .debounceTime(1000) //executa a ação do switchMap após 1 segundo
+      .distinctUntilChanged() //se o termo for igual, ele discarta e não uma nova consulta.
       .switchMap((termo: string) => {
         console.log('Requisição HTTP para a API ');
         
@@ -37,11 +41,25 @@ export class TopoComponent implements OnInit {
         }
           return this.ofertasService.pesquisaOfertas(termo)
       })
-
+      /* 
+      //Caso tenha escolhido retornar um observable de Array de ofertas vazio 
+      .catch( (err : any ) => {
+        console.log('Erro catch' , err);
+        return Observable.of<Oferta[]>([]);
+      })
+      */
+      
     this.ofertas.subscribe(
       (ofertaRetorno) => {
         console.log('Retorno da API - subscribe', ofertaRetorno);
+      },
+      
+      //Caso tenha escolhido retornar um Observable<HttpResponse<Oferta[]>> vazio
+      (error: any) => {
+        console.log("error no param", error);
+        return Observable.of<HttpResponse<Oferta[]>>();
       }
+      
     )
   }
 

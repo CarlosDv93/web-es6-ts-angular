@@ -22,12 +22,32 @@ Lembrando de adicionar `{ observe: 'response' }` como parametro da requisição 
 Para criar um observable vazio, usado na aula 155 - seção 11 - pesquisa por string vazia, depende do tipo de retorno. 
 
 Caso for retornar um observable de Array de ofertas vazio: `Observable<Oferta[]>` 
+   
     return Observable.of<Oferta[]>([]);
+
 `OU` 
+
 caso for retornar um observable que é um ResponseHTTP de um Array de Ofertas vazio: `Observable<HttpResponse<Oferta[]>>`
 
     return Observable.of<HttpResponse<Oferta[]>>(); 
 
+## Tratar Error
+
+Caso for retornar um observable de Array de ofertas vazio: `Observable<Oferta[]>` (pode ser feito no componente)
+   
+    .catch( (err : any ) => {
+        console.log('Erro catch' , err);
+        return Observable.of<Oferta[]>([]);
+    })
+
+`OU` 
+
+caso for retornar um observable que é um ResponseHTTP de um Array de Ofertas vazio: `Observable<HttpResponse<Oferta[]>>` (melhor tratar no service, mas pode ser feito no subcribe tbm - conforme exemplo do commit)
+
+    (error: any) => {
+        console.log("error no param", error);
+        return Observable.of<HttpResponse<Oferta[]>>();
+    }
 
 ## Further help
 
