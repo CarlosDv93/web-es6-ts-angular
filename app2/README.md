@@ -1,26 +1,15 @@
 # App2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
+Projeto do APP2 do curso de desenvolvimento mobile completo.
 
-## Development server
+# Dicas úteis citadas durante o curso.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Vide o [commmit master 4bdf9b6](https://github.com/CarlosDv93/web-es6-ts-angular/commit/4bdf9b6b51eb71915c45e812eb05d5b9b0f64c91) que contém como ter a resposta completa de uma requisição e como usar. 
+Caso não seja necessário, ver os mesmos arquivos que no [commit anterior](https://github.com/CarlosDv93/web-es6-ts-angular/tree/271f395d0269a0e55d7e4cee89e1156c3d0ac07c).
 
-## Code scaffolding
+### Simplificando: 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+    Para ter a resposta completa, tem que ser um `Observable<HttpResponse<T>>`, mas para ter a resposta direta, somente um `Observable<T>`.
 
 ## Further help
 
