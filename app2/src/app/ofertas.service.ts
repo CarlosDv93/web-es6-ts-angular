@@ -1,4 +1,4 @@
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpResponse } from '@angular/common/http';
 import { Oferta } from './shared/oferta.model';
 import { Injectable } from '@angular/core';
 
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 //import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
+import { JsonPipe } from '@angular/common';
 
 @Injectable()
 export class OfertasService {
@@ -23,7 +24,11 @@ export class OfertasService {
     public getOfertas(): Promise<Oferta[]> {
         return this.http.get(`${URL_API}/ofertas?destaque=true`)
         .toPromise()
-        .then( (ofertasResposta : any) => ofertasResposta);
+        .then( (ofertasResposta: any) => {
+            console.log(typeof ofertasResposta);
+            return ofertasResposta;
+        })
+            
     }
 
     public getOfertasPorCategoria(categoria:string) : Promise<Array<Oferta>> {
@@ -55,10 +60,12 @@ export class OfertasService {
             })
     }
 
-    public pesquisaOfertas(termo:string) : Observable<Oferta[]>{
-        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+    public pesquisaOfertas(termo:string) : Observable<HttpResponse<Oferta[]>>{
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`, { observe: 'response' })
             .retry(10)
-            .map((retorno: any) => {
+            .map((retorno: HttpResponse<Oferta[]>) => {
+                console.log(typeof retorno);
+                console.log("Retorno do Serviço: "+ retorno);
                 return retorno;
             })
     }
