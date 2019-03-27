@@ -64,8 +64,6 @@ export class OfertasService {
         return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`, { observe: 'response' })
             .retry(10)
             .map((retorno: HttpResponse<Oferta[]>) => {
-                console.log(typeof retorno);
-                console.log("Retorno do Serviço: "+ retorno);
                 return retorno;
             })
     }

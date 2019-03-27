@@ -9,7 +9,9 @@ Caso não seja necessário, ver os mesmos arquivos que no [commit anterior](http
 
 ### Simplificando: 
 
-    Para ter a resposta completa, tem que ser um `Observable<HttpResponse<T>>`, mas para ter a resposta direta, somente um `Observable<T>`.
+Para ter a resposta completa, tem que ser um `Observable<HttpResponse<T>>`, mas para ter a resposta direta, somente um `Observable<T>`.
+
+Lembrando de adicionar `{ observe: 'response' }` como parametro da requisição para retornar a response completa HTTP e não somente o body
 
 ## Further help
 
