@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/observable/of';
+
 import { Oferta } from '../shared/oferta.model';
 import { OfertasService } from './../ofertas.service';
 import { HttpResponse } from '@angular/common/http';
-
-import 'rxjs/add/operator/switchMap'
 
 @Component({
   selector: 'app2-topo',
@@ -25,7 +26,16 @@ export class TopoComponent implements OnInit {
       .debounceTime(1000) //executa a ação do switchMap após 1 segundo
       .switchMap((termo: string) => {
         console.log('Requisição HTTP para a API ');
-        return this.ofertasService.pesquisaOfertas(termo)
+        
+        if(termo.trim() === ''){
+          //retornar um observable de Array de ofertas vazio 
+          //return Observable.of<Oferta[]>([]);
+          //|| 
+          //retornar um Observable<HttpResponse<Oferta[]>> vazio
+          return Observable.of<HttpResponse<Oferta[]>>();
+          
+        }
+          return this.ofertasService.pesquisaOfertas(termo)
       })
 
     this.ofertas.subscribe(
