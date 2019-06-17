@@ -20,6 +20,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 export class TopoComponent implements OnInit {
 
   public ofertas : Observable<HttpResponse<Oferta[]>>;
+  public ofertas2: Oferta[];
   private subjectPesquisa: Subject<string> = new Subject<string>();
 
   constructor(private ofertasService: OfertasService) { }
@@ -51,7 +52,8 @@ export class TopoComponent implements OnInit {
       
     this.ofertas.subscribe(
       (ofertaRetorno) => {
-        console.log('Retorno da API - subscribe', ofertaRetorno);
+        console.log('Retorno da API - subscribe', ofertaRetorno.body);
+        this.ofertas2 = ofertaRetorno.body;
       },
       
       //Caso tenha escolhido retornar um Observable<HttpResponse<Oferta[]>> vazio
