@@ -15,7 +15,8 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 })
 export class TopoComponent implements OnInit {
 
-  public ofertas : Observable<HttpResponse<Oferta[]>>;
+  //public ofertas : Observable<HttpResponse<Oferta[]>>;
+  public ofertas : Observable<Oferta[]>;
   public ofertas2: Oferta[];
   private subjectPesquisa: Subject<string> = new Subject<string>();
 
@@ -26,14 +27,13 @@ export class TopoComponent implements OnInit {
       .debounceTime(1000) //executa a ação do switchMap após 1 segundo
       .distinctUntilChanged() //se o termo for igual, ele discarta e não uma nova consulta.
       .switchMap((termo: string) => {
-        console.log('Requisição HTTP para a API ');
         
         if(termo.trim() === ''){
           //retornar um observable de Array de ofertas vazio 
-          //return Observable.of<Oferta[]>([]);
+          return Observable.of<Oferta[]>([]);
           //|| 
           //retornar um Observable<HttpResponse<Oferta[]>> vazio
-          return Observable.of<HttpResponse<Oferta[]>>();
+          //return Observable.of<HttpResponse<Oferta[]>>();
           
         }
           return this.ofertasService.pesquisaOfertas(termo)
@@ -48,6 +48,16 @@ export class TopoComponent implements OnInit {
       
     this.ofertas.subscribe(
       (ofertaRetorno) => {
+        this.ofertas2 = ofertaRetorno;
+      },
+      
+      //Caso tenha escolhido retornar um Observable<HttpResponse<Oferta[]>> vazio
+      (error: any) => {
+        return Observable.of<HttpResponse<Oferta[]>>();
+      }
+
+      /* //Caso o retorno seja um HTTPResponse<Oferta[]>
+      (ofertaRetorno) => {
         console.log('Retorno da API - subscribe', ofertaRetorno.body);
         this.ofertas2 = ofertaRetorno.body;
       },
@@ -59,10 +69,13 @@ export class TopoComponent implements OnInit {
       }
       
     )
+*/
+      
+    )
+
   }
 
   pesquisa(termoPesquisa : string) : void {
-    console.log('Key Up caracter: ' + termoPesquisa);
     this.subjectPesquisa.next(termoPesquisa)
   }
 

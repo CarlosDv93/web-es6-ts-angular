@@ -60,10 +60,21 @@ export class OfertasService {
             })
     }
 
+    
+    /*//Pesquisa oferta com HTTPResponse
     public pesquisaOfertas(termo:string) : Observable<HttpResponse<Oferta[]>>{
         return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`, { observe: 'response' })
             .retry(10)
             .map((retorno: HttpResponse<Oferta[]>) => {
+                return retorno;
+            })
+    }*/
+
+    //Pesquisa Oferta só com o retorno do body
+    public pesquisaOfertas(termo:string) : Observable<Oferta[]>{
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+            .retry(10)
+            .map((retorno: Oferta[]) => {
                 return retorno;
             })
     }
