@@ -9,13 +9,33 @@ export class OrdemCompraComponent implements OnInit {
 
 
   public endereco: string = '';
-  public numero : number;
+  public numero : string = '';
   public complemento: string = '';
   public formaPagamento: string = '';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  atualizaEndereco(endereco : string){
+    this.endereco = endereco;
+    console.log(endereco);
+  }
+
+  atualizaComplemento(complemento : string){
+    this.complemento = complemento;
+    console.log(complemento);
+  }
+
+  atualizaNumero(numero : string){
+    this.numero  = numero;
+    console.log(numero);
+  }
+
+  atualizaFormaPagamento(formaPagamento : string){
+    this.formaPagamento  = formaPagamento;
+    console.log(formaPagamento);
   }
 
 }
