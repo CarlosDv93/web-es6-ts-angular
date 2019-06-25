@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { TouchSequence } from 'selenium-webdriver';
+import { OrdemCompraService } from '../ordem-compra.service';
+import { Pedido } from '../shared/pedido.model';
 
 @Component({
   selector: 'app2-ordem-compra',
   templateUrl: './ordem-compra.component.html',
-  styleUrls: ['./ordem-compra.component.css']
+  styleUrls: ['./ordem-compra.component.css'],
+  providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
 
+  //Pedido
+  public pedido : Pedido = new Pedido('', '', '', '');
 
   public endereco: string = '';
   public numero : string = '';
@@ -29,9 +33,12 @@ export class OrdemCompraComponent implements OnInit {
   //controlar botão confirmar Compra
   public formEstado: string = "disabled";
 
-  constructor() { }
+  constructor(public ordemCompraService : OrdemCompraService) { }
 
   ngOnInit() {
+
+    //this.ordemCompraService.efetivarCompra();
+
   }
 
   atualizaEndereco(endereco : string){
@@ -88,6 +95,18 @@ export class OrdemCompraComponent implements OnInit {
     } else {
       this.formEstado = 'disabled';
     }
+  }
+
+  public confirmarCompra() : void {
+    this.pedido.endereco = this.endereco;
+    this.pedido.complemento = this.complemento;
+    this.pedido.numero = this.numero;
+    this.pedido.formaPagamento = this.formaPagamento;
+
+    this.ordemCompraService.efetivarCompra(this.pedido)
+      .subscribe((retorno: any) => {
+        console.log("Retorno API Pedidos: ", retorno);
+      })
   }
 
 }
