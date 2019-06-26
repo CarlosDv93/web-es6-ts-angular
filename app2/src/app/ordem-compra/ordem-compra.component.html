@@ -66,6 +66,8 @@
       <h5>Dados de entrega</h5>
       <hr />
 
+      <pre> Válido: {{ formulario.valid | json}}</pre>
+      <pre>Inválido: {{ formulario.invalid | json}}</pre>
       <pre>{{ formulario.value | json}}</pre>
       <div class="form-row">
 
@@ -75,7 +77,8 @@
             class="form-control is-invalid" 
             placeholder="Endereço" 
             autocomplete="off" 
-            minlength="5" 
+            minlength="3" 
+            maxlength="120"
             required
             name="endereco"
             ngModel
@@ -89,7 +92,8 @@
             class="form-control is-valid" 
             placeholder="Número" 
             autocomplete="off" 
-            minlength="1"
+            minlength="1" 
+            maxlength="20"
             required
             name="numero"
             ngModel
@@ -121,6 +125,7 @@
             class="form-control is-invalid"
             name="formaPagamento"
             ngModel
+            required
           >
             <option value="">Selecione uma opção</option>
             <option value="dinheiro">Dinheiro</option>
