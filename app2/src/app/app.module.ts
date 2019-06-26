@@ -3,7 +3,8 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'
+//import { FormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,7 +43,8 @@ import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    //FormsModule
+    ReactiveFormsModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'}
