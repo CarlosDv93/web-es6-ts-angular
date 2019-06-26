@@ -19,6 +19,7 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 import localePt from "@angular/common/locales/pt";
 import { registerLocaleData } from '@angular/common';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
     ComoUsarComponent,
     OndeFicaComponent,
     DescricaoReduzida,
-    OrdemCompraComponent
+    OrdemCompraComponent,
+    OrdemCompraSucessoComponent
   ],
   imports: [
     BrowserModule,

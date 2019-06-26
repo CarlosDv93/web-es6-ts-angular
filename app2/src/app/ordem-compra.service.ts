@@ -24,6 +24,7 @@ export class OrdemCompraService {
         return this.http.post(`${URL_API}/pedido`, JSON.stringify(pedido), options)
             .map((resposta : Response) => {
                 console.log(resposta);
+                return resposta;
             })
     }
 }
