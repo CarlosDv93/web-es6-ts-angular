@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from '../ordem-compra.service'
 import { Pedido } from '../shared/pedido.model'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -10,6 +11,15 @@ import { Pedido } from '../shared/pedido.model'
 })
 export class OrdemCompraComponent implements OnInit {
 
+  public formulario: FormGroup = new FormGroup({
+    'endereco': new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(120)]),
+    'numero': new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]),
+    'complemento': new FormControl(null),
+    'formaPagamento': new FormControl(null, [Validators.required])
+  });
+
+  public idPedidoCompra : number ;
+
   constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() {
@@ -17,5 +27,30 @@ export class OrdemCompraComponent implements OnInit {
   }
 
   public confirmarCompra(): void {
+    if(this.formulario.status === 'INVALID'){
+      console.log('formulario está inválido')
+      this.formulario.get('endereco').markAsTouched();
+      this.formulario.get('numero').markAsTouched();
+      this.formulario.get('complemento').markAsTouched();
+      this.formulario.get('formaPagamento').markAsTouched();
+    }else {
+      console.log("Formulário está válido!");
+
+      let pedido : Pedido = new Pedido(this.formulario.value.endereco,
+        this.formulario.value.numero,
+        this.formulario.value.complemento,
+        this.formulario.value.formaPagamento
+      );
+
+      console.log(pedido);
+
+      this.ordemCompraService.efetivarCompra(pedido)
+        .subscribe((pedido: Pedido) => {
+          console.log(pedido);
+          this.idPedidoCompra = pedido.id;
+          console.log(this.idPedidoCompra);
+        })
+
+    }
   }
 }
