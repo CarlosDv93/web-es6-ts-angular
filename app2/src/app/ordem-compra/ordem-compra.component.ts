@@ -45,10 +45,10 @@ export class OrdemCompraComponent implements OnInit {
       console.log(pedido);
 
       this.ordemCompraService.efetivarCompra(pedido)
-        .subscribe((pedido: Pedido) => {
+        .subscribe((pedido: number) => {
           console.log(pedido);
-          this.idPedidoCompra = pedido.id;
-          console.log(this.idPedidoCompra);
+          this.idPedidoCompra = pedido;
+          console.log("PedidoCompra:" + this.idPedidoCompra);
         })
 
     }

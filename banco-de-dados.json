@@ -199,6 +199,69 @@
       "complemento": "Casa 98",
       "formaPagamento": "dinheiro",
       "id": 2
+    },
+    {
+      "endereco": "Carlos",
+      "numero": "123",
+      "complemento": "Casa",
+      "formaPagamento": "dinheiro",
+      "id": 3
+    },
+    {
+      "endereco": "Teste 123",
+      "numero": "123",
+      "complemento": "214",
+      "formaPagamento": "dinheiro",
+      "id": 4
+    },
+    {
+      "endereco": "Rua enderevo",
+      "numero": "123",
+      "complemento": null,
+      "formaPagamento": "dinheiro",
+      "id": 5
+    },
+    {
+      "endereco": "Rua Carlos",
+      "numero": "9999",
+      "complemento": null,
+      "formaPagamento": "debito",
+      "id": 6
+    },
+    {
+      "endereco": "Rua Carlos",
+      "numero": "9999",
+      "complemento": null,
+      "formaPagamento": "debito",
+      "id": 7
+    },
+    {
+      "endereco": "asdfgfg",
+      "numero": "78",
+      "complemento": "asdf",
+      "formaPagamento": "dinheiro",
+      "id": 8
+    },
+    {
+      "endereco": "asdfasdf",
+      "numero": "34",
+      "complemento": "aads",
+      "formaPagamento": "debito",
+      "id": 9
+    },
+    {
+      "endereco": "Carlos",
+      "numero": "123",
+      "complemento": "CaboVerde",
+      "formaPagamento": "dinheiro",
+      "id": 10
+    },
+    {
+      "endereco": "Carlos",
+      "numero": "123",
+      "complemento": "Teste",
+      "formaPagamento": "dinheiro",
+      "id": 11
     }
   ]
 }

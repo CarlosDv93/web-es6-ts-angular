@@ -22,9 +22,9 @@ export class OrdemCompraService {
         }
 
         return this.http.post(`${URL_API}/pedido`, JSON.stringify(pedido), options)
-            .map((resposta : Response) => {
+            .map((resposta : any) => {
                 console.log(resposta);
-                return resposta;
+                return resposta.id;
             })
     }
 }
