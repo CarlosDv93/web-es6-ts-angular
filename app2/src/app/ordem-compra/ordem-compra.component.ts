@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { OrdemCompraService } from '../ordem-compra.service'
-import CarrinhoService from '../carrinho.service';
+import { OrdemCompraService } from '../ordem-compra.service';
+import { CarrinhoService } from '../carrinho.service';
 import { Pedido } from '../shared/pedido.model'
+import { ItemCarrinho } from '../shared/item-carrinho.model';
 
 @Component({
   selector: 'app-ordem-compra',
   templateUrl: './ordem-compra.component.html',
   styleUrls: ['./ordem-compra.component.css'],
-  providers: [ OrdemCompraService, CarrinhoService ]
+  providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
 
@@ -20,12 +21,14 @@ export class OrdemCompraComponent implements OnInit {
   });
 
   public idPedidoCompra : number ;
+  public itensCarrinho : ItemCarrinho[] = [];
 
   constructor(private ordemCompraService: OrdemCompraService,
       private carrinhoService: CarrinhoService) { }
 
   ngOnInit() {
     console.log("OrdemCompra - Array de itens do carrinho: ", this.carrinhoService.exibirItens());
+    this.itensCarrinho = this.carrinhoService.exibirItens();
   }
 
   public confirmarCompra(): void {
@@ -55,4 +58,14 @@ export class OrdemCompraComponent implements OnInit {
 
     }
   }
+
+  public adicionar(item : ItemCarrinho){
+    console.log(item);
+    this.carrinhoService.adicionarQuantidade(item);
+  }
+
+  public subtrair(item : ItemCarrinho){
+    this.carrinhoService.subtrairQuantidade(item);
+  }
+
 }

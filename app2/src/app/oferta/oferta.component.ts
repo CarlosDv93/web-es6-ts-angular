@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OfertasService } from '../ofertas.service';
-import CarrinhoService from '../carrinho.service';
+import { CarrinhoService } from '../carrinho.service';
 import { Oferta } from '../shared/oferta.model';
 import 'rxjs/Rx';
 
@@ -9,7 +9,7 @@ import 'rxjs/Rx';
   selector: 'app2-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-  providers: [OfertasService, CarrinhoService]
+  providers: [OfertasService]
 })
 export class OfertaComponent implements OnInit, OnDestroy {
 
@@ -38,6 +38,7 @@ export class OfertaComponent implements OnInit, OnDestroy {
   public adicionarItemCarrinho() {
     //console.log(this.oferta);
     this.carrinhoService.incluirItem(this.oferta);
+    console.log("Exibir Itens que estão no carrinho", this.carrinhoService.exibirItens());
   }
 
 }
