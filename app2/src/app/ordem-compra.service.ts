@@ -21,7 +21,7 @@ export class OrdemCompraService {
             headers,
         }
 
-        return this.http.post(`${URL_API}/pedido`, JSON.stringify(pedido), options)
+        return this.http.post(`${URL_API}/pedido`, pedido, options)
             .map((resposta : any) => {
                 console.log(resposta);
                 return resposta.id;
