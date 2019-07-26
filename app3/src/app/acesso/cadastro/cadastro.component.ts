@@ -1,24 +1,24 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
-  styleUrls: ['./cadastro.component.css'],
-  providers: [ FormGroup, FormControl ]
+  styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent implements OnInit {
 
   @Output() public exibirPainel : EventEmitter<string> = new EventEmitter<string>();
 
-  public formularioCadastro: FormGroup = new FormGroup({
+  public formulario: FormGroup = new FormGroup
+  ({
     'email': new FormControl(null),
     'nomeCompleto': new FormControl(null),
     'usuario': new FormControl(null),
     'senha': new FormControl(null)
   })
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -29,7 +29,7 @@ export class CadastroComponent implements OnInit {
   }
 
   public cadastrarUsuario() {
-    console.log(this.formularioCadastro);
+    console.log(this.formulario);
   }
 
 }
