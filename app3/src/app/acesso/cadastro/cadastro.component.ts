@@ -29,7 +29,7 @@ export class CadastroComponent implements OnInit {
   }
 
 
-  public exibePainelLogin(event) : void {
+  public exibePainelLogin() : void {
     this.exibirPainel.emit('login');
   }
 
@@ -39,7 +39,12 @@ export class CadastroComponent implements OnInit {
     this.usuario = new Usuario(this.formulario.value.nomeCompleto, this.formulario.value.email,
       this.formulario.value.usuario, this.formulario.value.senha);
 
-    this.autenticacao.cadastrarUsuario(this.usuario);
+    this.autenticacao.cadastrarUsuario(this.usuario)
+      .then((sucesso) => {
+        this.exibePainelLogin();
+      }, (error) => {
+        console.log("Error: " + error.message);
+      })
   }
 
 }
