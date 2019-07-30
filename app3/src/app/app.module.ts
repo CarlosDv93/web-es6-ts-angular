@@ -14,8 +14,10 @@ import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 
 import { Autenticacao } from './acesso/autenticacao.service';
 import { AutenticacaoGuard } from './autenticacao.guard.service';
+import { BD } from './bd.service';
 
 import { ROUTES } from './app.routes';
+import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-publicacao.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ROUTES } from './app.routes';
     LoginComponent,
     CadastroComponent,
     HomeComponent,
-    PublicacoesComponent
+    PublicacoesComponent,
+    IncluirPublicacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { ROUTES } from './app.routes';
   ],
   providers: [
     Autenticacao,
-    AutenticacaoGuard
+    AutenticacaoGuard,
+    BD
   ],
   bootstrap: [AppComponent]
 })
