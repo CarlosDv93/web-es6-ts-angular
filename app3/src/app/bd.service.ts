@@ -10,7 +10,7 @@ export class BD {
 
     public publicar(publicacao: any): void {
 
-        console.log(publicacao);
+        //console.log(publicacao);
 
         let nomeImagem;
 
@@ -37,5 +37,51 @@ export class BD {
                     );
             })
 
+    }
+
+    public consultaPublicacoes(email: string): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+            firebase.database().ref(`publicacoes/${btoa(email)}`)
+                .once('value')
+                .then((snapshot) => {
+                   //console.log(snapshot.val());
+
+                    let publicacoes: Array<any> = [];
+
+                    snapshot.forEach((childSnapshot: any) => {
+
+                        let publicacao = childSnapshot.val();
+                        publicacao.key = childSnapshot.key;
+                        publicacoes.push(publicacao);
+                    })
+                    
+
+                    return publicacoes.reverse();
+
+                })
+                .then((publicacoes) => {
+                    //console.log(publicacoes);
+
+                    publicacoes.forEach((publicacao) => {
+                        firebase.storage().ref()
+                        .child(`imagens/${publicacao.key}`)
+                        .getDownloadURL()
+                        .then((url: string) => {
+
+                            publicacao.urlImagem = url;
+
+                            firebase.database().ref(`usuario_detalhe/${btoa(email)}`)
+                                .orderByKey()
+                                .once('value')
+                                .then((snapshot: any) => {
+                                    publicacao.nomeUsuario = snapshot.val().usuario;
+                                });
+                        })
+                    })
+                    resolve(publicacoes);
+                })
+                
+        });
     }
 }

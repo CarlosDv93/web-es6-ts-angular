@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { BD } from 'src/app/bd.service';
 import { Progresso } from 'src/app/progresso.service';
@@ -22,6 +22,7 @@ export class IncluirPublicacaoComponent implements OnInit {
   public imagem;
   public progressoPublicacao: string = 'pendente';
   public porcentagemUpload: number = 0;
+  @Output() public atualizarTimeline: EventEmitter<any> = new EventEmitter<any>()
 
   private formulario: FormGroup = new FormGroup({
     'titulo': new FormControl()
@@ -53,8 +54,11 @@ export class IncluirPublicacaoComponent implements OnInit {
           this.porcentagemUpload = Math.round((this.progresso.estado.bytesTransferred / this.progresso.estado.totalBytes)*100);
 
           if(this.progresso.status === 'concluido'){
-            continua.next(false);
             this.progressoPublicacao = 'concluido';
+            continua.next(false);
+
+            //emitir um evento para o pai
+            this.atualizarTimeline.emit();
           }
     })
   }
