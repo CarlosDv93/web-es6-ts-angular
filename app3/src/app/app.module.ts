@@ -15,6 +15,7 @@ import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { Autenticacao } from './acesso/autenticacao.service';
 import { AutenticacaoGuard } from './autenticacao.guard.service';
 import { BD } from './bd.service';
+import { Progresso } from './progresso.service';
 
 import { ROUTES } from './app.routes';
 import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-publicacao.component';
@@ -39,7 +40,8 @@ import { IncluirPublicacaoComponent } from './home/incluir-publicacao/incluir-pu
   providers: [
     Autenticacao,
     AutenticacaoGuard,
-    BD
+    BD,
+    Progresso
   ],
   bootstrap: [AppComponent]
 })
